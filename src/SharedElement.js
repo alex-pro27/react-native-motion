@@ -191,12 +191,12 @@ class SharedElement extends PureComponent {
   measure = (ref, callback) => {
     if (!ref) {
       callback(null);
+    } else {	  
+      ref.measure((x, y, width, height, pageX, pageY) => {
+        const position = { x, y, width, height, pageX, pageY };
+     	callback(position);
+      });
     }
-
-    ref.measure((x, y, width, height, pageX, pageY) => {
-      const position = { x, y, width, height, pageX, pageY };
-      callback(position);
-    });
   };
   moveToDestination = () => {
     const { moveSharedElement } = this.context;
